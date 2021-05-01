@@ -15,8 +15,8 @@ def data_extractor(fileName, fullPath):
     with open(fullPath, 'rb') as file:
         seconds = int.from_bytes(file.read(4), byteorder='little')
         milliseconds = int.from_bytes(file.read(4), byteorder='little')
-        price = int.from_bytes(file.read(4), byteorder='little')
-        volume = int.from_bytes(file.read(4), byteorder='little')
+        price = int.from_bytes(file.read(2), byteorder='little')
+        volume = int.from_bytes(file.read(2), byteorder='little')
     return getTimestamp(fileName, seconds, milliseconds), price, volume
 
 def writer(path, output_file):
