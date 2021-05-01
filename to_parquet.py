@@ -51,10 +51,9 @@ def writer(path, output_file):
             filename = directory + os.sep + str(file)
             print(filename)
             file_info = data_extractor(str(file), filename)
-            for date, price, volume in file_info:
-                row = pd.DataFrame([[date,price,volume]],columns=['timestamp', 'price', 'volume'])
-                insert_table = pa.Table.from_pandas(row, schema=schema)
-                writer.write_table(insert_table)
+            file_df = pd.DataFrame(file_info, columns=['timestamp', 'price', 'volume'])
+            insert_table = pa.Table.from_pandas(file_df, schema=schema)
+            writer.write_table(insert_table)
 
 
 if __name__ == '__main__':
