@@ -13,7 +13,6 @@ def getTimestamp(fileName, seconds, milliseconds):
 
 def data_extractor(fileName, fullPath):
     with open(fullPath, 'rb') as file:
-        file.read(10)
         seconds = int.from_bytes(file.read(4), byteorder='little')
         milliseconds = int.from_bytes(file.read(4), byteorder='little')
         price = int.from_bytes(file.read(4), byteorder='little')
